@@ -1,0 +1,139 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Main.gd" type="Script" id=1]
+[ext_resource path="res://assets/Font.tres" type="Theme" id=2]
+[ext_resource path="res://assets/FishGame/tile_0350.png" type="Texture" id=3]
+[ext_resource path="res://assets/FishGame/tile_0380.png" type="Texture" id=4]
+[ext_resource path="res://ui/BigFont.tres" type="DynamicFont" id=5]
+[ext_resource path="res://assets/ui/Bonus/click.wav" type="AudioStream" id=6]
+[ext_resource path="res://assets/HangerGame/spritesheet_players.png" type="Texture" id=7]
+[ext_resource path="res://assets/HangerGame/HangerGameTileMap.tres" type="TileSet" id=8]
+
+[node name="Main" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Motion" type="CheckBox" parent="."]
+margin_left = 391.0
+margin_top = 240.0
+margin_right = 653.0
+margin_bottom = 298.0
+grow_horizontal = 0
+theme = ExtResource( 2 )
+custom_constants/hseparation = -100
+pressed = true
+text = "Motion"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Asymmetric" type="CheckBox" parent="."]
+margin_left = 391.0
+margin_top = 320.0
+margin_right = 653.0
+margin_bottom = 378.0
+grow_horizontal = 0
+theme = ExtResource( 2 )
+custom_constants/hseparation = -100
+text = "Asymmetric"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FishGame" type="Button" parent="."]
+margin_left = 185.0
+margin_top = 410.0
+margin_right = 425.0
+margin_bottom = 490.0
+theme = ExtResource( 2 )
+text = "Fish Game"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BlanceGame" type="Button" parent="."]
+margin_left = 615.0
+margin_top = 410.0
+margin_right = 855.0
+margin_bottom = 490.0
+theme = ExtResource( 2 )
+text = "Balance Game"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Fish1" type="Sprite" parent="."]
+modulate = Color( 0, 0.909804, 0.290196, 1 )
+position = Vector2( 385, 527 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 3 )
+
+[node name="Fish2" type="Sprite" parent="."]
+modulate = Color( 0.360784, 0, 1, 1 )
+position = Vector2( 233, 540 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 4 )
+flip_h = true
+
+[node name="Alien" type="Sprite" parent="."]
+position = Vector2( 988, 474 )
+scale = Vector2( 0.546874, 0.546874 )
+texture = ExtResource( 7 )
+flip_h = true
+region_enabled = true
+region_rect = Rect2( 768, 1536, 128, 256 )
+
+[node name="TileMap" type="TileMap" parent="."]
+scale = Vector2( 0.5, 0.5 )
+tile_set = ExtResource( 8 )
+format = 1
+tile_data = PoolIntArray( 1114138, 4, 0, 1114140, 5, 0, 1114142, 5, 0 )
+
+[node name="Click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+
+[node name="Title" type="Label" parent="."]
+margin_left = 342.0
+margin_top = 62.0
+margin_right = 686.0
+margin_bottom = 140.0
+theme = ExtResource( 2 )
+custom_fonts/font = ExtResource( 5 )
+text = "Motion Games"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ControllerCheckboxes" type="Control" parent="."]
+margin_top = 168.0
+margin_right = 40.0
+margin_bottom = 208.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NoControllers" type="Label" parent="ControllerCheckboxes"]
+visible = false
+modulate = Color( 1, 0.298039, 0.298039, 1 )
+margin_left = 345.0
+margin_top = -3.0
+margin_right = 699.0
+margin_bottom = 33.0
+theme = ExtResource( 2 )
+text = "No controllers connected"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="button_down" from="Motion" to="." method="_play_click"]
+[connection signal="toggled" from="Motion" to="." method="_on_Motion_toggled"]
+[connection signal="button_down" from="Asymmetric" to="." method="_play_click"]
+[connection signal="toggled" from="Asymmetric" to="." method="_on_Asymmetric_toggled"]
+[connection signal="pressed" from="FishGame" to="." method="_on_Fish_Game_pressed"]
+[connection signal="pressed" from="BlanceGame" to="." method="_on_Blance_Game_pressed"]

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/jingles_PIZZI16.wav-f73840991b1a8a9d1b62084f62f947c0.sample"
+
+[deps]
+
+source_file="res://assets/sounds/jingles_PIZZI16.wav"
+dest_files=[ "res://.import/jingles_PIZZI16.wav-f73840991b1a8a9d1b62084f62f947c0.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

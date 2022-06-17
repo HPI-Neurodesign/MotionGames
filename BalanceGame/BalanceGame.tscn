@@ -1,0 +1,148 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://addons/multiplayer/NetworkGame.gd" type="Script" id=1]
+[ext_resource path="res://BalanceGame/BalanceGame.gd" type="Script" id=2]
+[ext_resource path="res://BalanceGame/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/HangerGame/HangerGameTileMap.tres" type="TileSet" id=4]
+[ext_resource path="res://BalanceGame/Scales.gd" type="Script" id=5]
+[ext_resource path="res://ui/GameUI.tscn" type="PackedScene" id=6]
+[ext_resource path="res://ui/Explanation.tscn" type="PackedScene" id=7]
+[ext_resource path="res://BalanceGame/Blocks.gd" type="Script" id=8]
+[ext_resource path="res://assets/HangerGame/Wall.tres" type="TileSet" id=9]
+[ext_resource path="res://assets/sounds/error_008.wav" type="AudioStream" id=10]
+[ext_resource path="res://assets/sounds/jingles_PIZZI16.wav" type="AudioStream" id=11]
+[ext_resource path="res://assets/HangerGame/decoration/medievalTile_210.png" type="Texture" id=12]
+[ext_resource path="res://assets/ShakeCamera/ShakeCamera2D.tscn" type="PackedScene" id=13]
+[ext_resource path="res://assets/HangerGame/decoration/medievalTile_234.png" type="Texture" id=14]
+[ext_resource path="res://assets/HangerGame/decoration/medievalTile_075.png" type="Texture" id=15]
+[ext_resource path="res://assets/HangerGame/decoration/medievalTile_187.png" type="Texture" id=16]
+[ext_resource path="res://assets/HangerGame/decoration/medievalTile_029.png" type="Texture" id=17]
+
+[sub_resource type="Environment" id=1]
+background_mode = 4
+glow_enabled = true
+
+[node name="NetworkGame" type="Node"]
+script = ExtResource( 1 )
+ip = ""
+max_players = 4
+player_scene = ExtResource( 3 )
+players_container = NodePath("HangerGame/Players")
+
+[node name="HangerGame" type="Node2D" parent="."]
+script = ExtResource( 2 )
+
+[node name="ShakeCamera2D" parent="HangerGame" instance=ExtResource( 13 )]
+position = Vector2( 512, 300 )
+current = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="HangerGame"]
+environment = SubResource( 1 )
+
+[node name="Wall" type="TileMap" parent="HangerGame"]
+modulate = Color( 0.458824, 0.458824, 0.458824, 1 )
+scale = Vector2( 8, 8 )
+tile_set = ExtResource( 9 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( 0, 6, 0, 1, 4, 0, 2, 4, 0, 3, 4, 0, 4, 4, 0, 5, 4, 0, 6, 4, 0, 7, 5, 0, 65536, 2, 0, 65537, 1, 0, 65538, 1, 0, 65539, 1, 0, 65540, 1, 0, 65541, 1, 0, 65542, 1, 0, 65543, 3, 0, 131072, 2, 0, 131073, 1, 0, 131074, 1, 0, 131075, 1, 0, 131076, 1, 0, 131077, 1, 0, 131078, 1, 0, 131079, 3, 0, 196608, 2, 0, 196609, 1, 0, 196610, 1, 0, 196611, 1, 0, 196612, 1, 0, 196613, 1, 0, 196614, 1, 0, 196615, 3, 0, 262144, 2, 0, 262145, 1, 0, 262146, 1, 0, 262147, 1, 0, 262148, 1, 0, 262149, 1, 0, 262150, 1, 0 )
+
+[node name="Players" type="Node2D" parent="HangerGame"]
+position = Vector2( 512, 0 )
+
+[node name="Scales" type="KinematicBody2D" parent="HangerGame" groups=["floor", "scale"]]
+position = Vector2( 512, 386 )
+script = ExtResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="HangerGame/Scales"]
+polygon = PoolVector2Array( 396, -166, 397, 12, -396, 12, -396, -166, -376, -166, -376, -12, 376, -12, 376, -166 )
+
+[node name="Polygon2D" type="Polygon2D" parent="HangerGame/Scales"]
+color = Color( 0.419608, 0.278431, 0.156863, 1 )
+polygon = PoolVector2Array( -390, -12, 361.228, -12, 390, -12, 390, 12, -390, 12 )
+
+[node name="Polygon2D2" type="Polygon2D" parent="HangerGame/Scales"]
+position = Vector2( -386, 0 )
+color = Color( 0.419608, 0.278431, 0.156863, 1 )
+polygon = PoolVector2Array( 10, -30, -10, -30, -10, 12, 10, 12 )
+
+[node name="Polygon2D3" type="Polygon2D" parent="HangerGame/Scales"]
+position = Vector2( 386, 0 )
+color = Color( 0.419608, 0.278431, 0.156863, 1 )
+polygon = PoolVector2Array( 10, -30, -10, -30, -10, 12, 10, 12 )
+
+[node name="Blocks" type="Node2D" parent="HangerGame"]
+position = Vector2( 512, 0 )
+script = ExtResource( 8 )
+
+[node name="ErrorAudio" type="AudioStreamPlayer2D" parent="HangerGame/Blocks"]
+stream = ExtResource( 10 )
+
+[node name="SuccessAudio" type="AudioStreamPlayer2D" parent="HangerGame/Blocks"]
+stream = ExtResource( 11 )
+
+[node name="Background" type="TileMap" parent="HangerGame" groups=["floor"]]
+tile_set = ExtResource( 4 )
+cell_quadrant_size = 128
+collision_mask = 3
+format = 1
+tile_data = PoolIntArray( 393222, 4, 0, 393224, 536870916, 0, 524288, 536870917, 0, 524290, 5, 0, 524292, 536870917, 0, 524294, 2, 0, 524296, 536870914, 0, 524298, 5, 0, 524300, 536870917, 0, 524302, 5, 0 )
+
+[node name="Node2D" type="Node2D" parent="HangerGame/Background"]
+modulate = Color( 0.752941, 0.752941, 0.752941, 1 )
+
+[node name="Sprite" type="Sprite" parent="HangerGame/Background/Node2D"]
+position = Vector2( 83, 96 )
+texture = ExtResource( 16 )
+
+[node name="Sprite2" type="Sprite" parent="HangerGame/Background/Node2D"]
+position = Vector2( 83, 165 )
+texture = ExtResource( 12 )
+
+[node name="Sprite4" type="Sprite" parent="HangerGame/Background/Node2D"]
+position = Vector2( 83, 233 )
+texture = ExtResource( 12 )
+
+[node name="Sprite5" type="Sprite" parent="HangerGame/Background/Node2D"]
+position = Vector2( 83, 300 )
+texture = ExtResource( 12 )
+
+[node name="Sprite6" type="Sprite" parent="HangerGame/Background/Node2D"]
+position = Vector2( 83, 364 )
+texture = ExtResource( 12 )
+
+[node name="Sprite7" type="Sprite" parent="HangerGame/Background/Node2D"]
+position = Vector2( 83, 416 )
+texture = ExtResource( 12 )
+
+[node name="Sprite3" type="Sprite" parent="HangerGame/Background/Node2D"]
+position = Vector2( 83, 477 )
+texture = ExtResource( 14 )
+
+[node name="Node2D2" type="Node2D" parent="HangerGame/Background"]
+modulate = Color( 0.772549, 0.772549, 0.772549, 1 )
+
+[node name="Sprite" type="Sprite" parent="HangerGame/Background/Node2D2"]
+position = Vector2( 960, 96 )
+texture = ExtResource( 17 )
+
+[node name="Sprite2" type="Sprite" parent="HangerGame/Background/Node2D2"]
+position = Vector2( 960, 160 )
+texture = ExtResource( 15 )
+
+[node name="UI" parent="HangerGame" instance=ExtResource( 6 )]
+
+[node name="Explanation" parent="HangerGame" instance=ExtResource( 7 )]
+title = "Scale Management"
+explanation = "Tilt the controller left and right to move along the scale. Organize
+your team to avoid hitting the obstacles spawning under the scale."
+
+[connection signal="start" from="HangerGame" to="HangerGame/Scales" method="_on_game_started"]
+[connection signal="start" from="HangerGame" to="HangerGame/Blocks" method="_on_game_started"]
+[connection signal="start" from="HangerGame" to="HangerGame/UI" method="_on_game_started"]
+[connection signal="stop" from="HangerGame" to="HangerGame/Scales" method="_on_game_stopped"]
+[connection signal="stop" from="HangerGame" to="HangerGame/Blocks" method="_on_game_stopped"]
+[connection signal="stop" from="HangerGame" to="HangerGame/UI" method="_on_game_stopped"]
+[connection signal="stop" from="HangerGame" to="HangerGame/Explanation" method="_on_game_stopped"]
+[connection signal="timeout" from="HangerGame/UI" to="HangerGame" method="stop_game"]
+[connection signal="timeout" from="HangerGame/UI" to="HangerGame" method="_on_timeout"]

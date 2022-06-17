@@ -1,0 +1,59 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://addons/multiplayer/Sync.gd" type="Script" id=1]
+[ext_resource path="res://assets/Font.tres" type="Theme" id=2]
+[ext_resource path="res://ui/UI.gd" type="Script" id=5]
+
+[node name="UI" type="Control"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 90.0
+one_shot = true
+
+[node name="TimeLeft" type="Label" parent="."]
+margin_left = 393.0
+margin_top = 10.0
+margin_right = 636.0
+margin_bottom = 46.0
+theme = ExtResource( 2 )
+text = "300"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Score" type="Label" parent="."]
+margin_left = 862.0
+margin_top = 12.0
+margin_right = 948.0
+margin_bottom = 48.0
+theme = ExtResource( 2 )
+text = "Score:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CurrentScore" type="Label" parent="."]
+margin_left = 958.0
+margin_top = 12.0
+margin_right = 1012.0
+margin_bottom = 48.0
+theme = ExtResource( 2 )
+text = "0"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sync" type="Node" parent="."]
+script = ExtResource( 1 )
+synced = PoolStringArray( "score" )
+
+[connection signal="timeout" from="Timer" to="." method="_on_timeout"]

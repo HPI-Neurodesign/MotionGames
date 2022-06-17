@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/error_008.wav-dc70b1f045f21187d4624ce3c1c59efe.sample"
+
+[deps]
+
+source_file="res://assets/sounds/error_008.wav"
+dest_files=[ "res://.import/error_008.wav-dc70b1f045f21187d4624ce3c1c59efe.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=false
+edit/loop=false
+compress/mode=0
