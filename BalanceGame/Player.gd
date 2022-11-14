@@ -24,7 +24,6 @@ const matched_colors = {
 func set_block_colors(array):
 	if array == null:
 		return
-	print(array)
 	colors = array
 	if colors[0] == "":
 		modulate = colors[1]
@@ -95,13 +94,14 @@ func _process(_delta):
 		if is_on_floor():
 			on_floor = true
 	
+	var c = colors[0] if colors and len(colors) > 0 else "" 
 	if state == State.Idle:
-		$Sprite.play("idle_" + colors[0])
+		$Sprite.play("idle_" + c)
 	elif state == State.WalkingLeft:
-		$Sprite.play("walk_" + colors[0])
+		$Sprite.play("walk_" + c)
 		$Sprite.flip_h = true
 	elif state == State.WalkingRight:
-		$Sprite.play("walk_" + colors[0])
+		$Sprite.play("walk_" + c)
 		$Sprite.flip_h = false
 	
 	if is_network_master():
