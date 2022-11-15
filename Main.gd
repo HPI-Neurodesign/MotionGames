@@ -45,11 +45,11 @@ func _ready():
 		for argument in args:
 			if argument.find("game=") > -1:
 				start_game(argument.split("=")[1])
-	else:
-		JoyCon.init()
-		get_controllers()
-		if JoyCon.connect("button_pressed", self, "joycon_button_pressed") != OK:
-			print("could not connect button pressed signal")
+	#else:
+	#	JoyCon.init()
+	#	get_controllers()
+	#	if JoyCon.connect("button_pressed", self, "joycon_button_pressed") != OK:
+	#		print("could not connect button pressed signal")
 
 func start_game(game):
 	print("Starting game " + str(game))

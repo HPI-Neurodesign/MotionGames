@@ -42,10 +42,10 @@ var color
 var setup = false
 var data
 
-func init():
-	data = preload("res://JoyCons/joycon.gdns").new()
-	device_count = data.connect_devices()
-	print("Found " + str(device_count) + " devices")
+#func init():
+#	data = preload("res://JoyCons/joycon.gdns").new()
+#	device_count = data.connect_devices()
+#	print("Found " + str(device_count) + " devices")
 
 func _ready():
 	set_process(false)
