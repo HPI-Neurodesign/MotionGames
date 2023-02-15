@@ -26,9 +26,7 @@ func _ready():
 		print("Signal net up could not be connected")
 	
 	if is_network_master():
-		setup_joycons()
 		$YouLabel.visible = true
-		$YouLabel.modulate = JoyCon.get_joycon_color()
 	if color == "Blue":
 		$Sprites/Blue.visible = true
 		$Arms/BlueArm.visible = true
@@ -64,8 +62,8 @@ func _network_ready(is_source):
 
 func _process(_delta):
 	if not ready and \
-	  (Input.is_action_just_pressed("ui_up") #Allow using keyboard for debugging
-	  or (JoyCon.moveUp > 150 and GameSettings.is_motion_enabled())): #if motion enabled
+	  (Input.is_action_just_pressed("ui_up")): #Allow using keyboard for debugging
+	 # or (JoyCon.moveUp > 150 and GameSettings.is_motion_enabled())): #if motion enabled
 		set_ready(true)
 		set_physics_process(true)
 	

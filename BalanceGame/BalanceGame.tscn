@@ -146,3 +146,4 @@ your team to avoid hitting the obstacles spawning under the scale."
 [connection signal="stop" from="HangerGame" to="HangerGame/Explanation" method="_on_game_stopped"]
 [connection signal="timeout" from="HangerGame/UI" to="HangerGame" method="stop_game"]
 [connection signal="timeout" from="HangerGame/UI" to="HangerGame" method="_on_timeout"]
+[connection signal="gui_input" from="HangerGame/Explanation" to="HangerGame/Explanation" method="_on_Explanation_gui_input"]

@@ -7,7 +7,7 @@ var state = State.Idle
 var gravity = 200
 var on_floor = false
 
-const ControllerThreshhold = 50
+const ControllerThreshhold = 0.5
 const SpawnPositions = [300, -300, 100, -100]
 
 var offset
@@ -44,15 +44,14 @@ func _network_ready(is_source):
 			player_count += 1
 	if is_source:
 		position += Vector2(SpawnPositions[player_count], 200)
-	if is_network_master():
-		if JoyCon.get_joycon_color() != Color.white:
-			set_block_colors(["", JoyCon.get_joycon_color()])
-		else:
-			set_block_colors([matched_colors.keys()[player_count], matched_colors.values()[player_count]])
+	#if is_network_master():
+	#	if JoyCon.get_joycon_color() != Color.white:
+	#		set_block_colors(["", JoyCon.get_joycon_color()])
+	#	else:
+	set_block_colors([matched_colors.keys()[player_count], matched_colors.values()[player_count]])
 
 func _ready():
 	if is_network_master():
-		setup_joycons()
 		offset = $YouLabel.rect_position
 		$YouLabel.visible = true
 		$YouLabel.set_as_toplevel(true)
@@ -78,18 +77,21 @@ func _process(_delta):
 		$YouLabel.rect_position = global_position + offset
 		var velocity = Vector2()
 		velocity.y += gravity
+
+		#on android it is x
 		if Input.is_action_pressed("ui_right") or \
-		   (JoyCon.xRotation > ControllerThreshhold and GameSettings.is_motion_enabled()) or \
+		   (Sensors.get_accelerometer().z > ControllerThreshhold and GameSettings.is_motion_enabled()) or \
 		   (direction_pressed == 1 and not GameSettings.is_motion_enabled()):
 			velocity.x += speed
 			state = State.WalkingRight
 		elif Input.is_action_pressed("ui_left") or \
-			 (JoyCon.xRotation < -ControllerThreshhold and GameSettings.is_motion_enabled()) or \
+			 (Sensors.get_accelerometer().z < -ControllerThreshhold and GameSettings.is_motion_enabled()) or \
 			 (direction_pressed == -1 and not GameSettings.is_motion_enabled()):
 			velocity.x -= speed
 			state = State.WalkingLeft
 		else:
 			state = State.Idle
+		print(state)
 		var _movement = move_and_slide(velocity, Vector2.UP, true)
 		if is_on_floor():
 			on_floor = true

@@ -45,8 +45,8 @@ config/icon="res://assets/HangerGame/icon.png"
 [autoload]
 
 GameSettings="*res://GameSettings.gd"
-JoyCon="*res://JoyCons/JoyCon.gd"
 Config="*res://Config.gd"
+Sensors="*res://Sensors.gd"
 
 [display]
 

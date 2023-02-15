@@ -110,27 +110,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ControllerCheckboxes" type="Control" parent="."]
-margin_top = 168.0
-margin_right = 40.0
-margin_bottom = 208.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="NoControllers" type="Label" parent="ControllerCheckboxes"]
-visible = false
-modulate = Color( 1, 0.298039, 0.298039, 1 )
-margin_left = 345.0
-margin_top = -3.0
-margin_right = 699.0
-margin_bottom = 33.0
-theme = ExtResource( 2 )
-text = "No controllers connected"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [connection signal="button_down" from="Motion" to="." method="_play_click"]
 [connection signal="toggled" from="Motion" to="." method="_on_Motion_toggled"]
 [connection signal="button_down" from="Asymmetric" to="." method="_play_click"]

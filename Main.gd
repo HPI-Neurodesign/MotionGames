@@ -23,21 +23,8 @@ func _draw():
 	elif selection == 3:
 		draw_rect(Rect2(610, 405, 250, 90), color, false, width)
 
-func joycon_button_pressed(button_name):
-	if selection == null:
-		return
-	if not button_name == "right" and not button_name == "top":
-		return
-	if selection == 0:
-		$Motion.pressed = not GameSettings.is_motion_enabled()
-	elif selection == 1:
-		$Asymmetric.pressed = not GameSettings.is_asymmetric()
-	elif selection == 2:
-		$FishGame.emit_signal("pressed")
-	elif selection == 3:
-		$BlanceGame.emit_signal("pressed")
-
 func _ready():
+
 	var args = OS.get_cmdline_args()
 	if "--dedicated" in args:
 		if "--asymmetric" in args:
@@ -45,11 +32,6 @@ func _ready():
 		for argument in args:
 			if argument.find("game=") > -1:
 				start_game(argument.split("=")[1])
-	#else:
-	#	JoyCon.init()
-	#	get_controllers()
-	#	if JoyCon.connect("button_pressed", self, "joycon_button_pressed") != OK:
-	#		print("could not connect button pressed signal")
 
 func start_game(game):
 	print("Starting game " + str(game))
@@ -76,48 +58,6 @@ func _on_Asymmetric_toggled(button_pressed):
 
 func _on_Motion_toggled(button_pressed):
 	GameSettings.set_motion_enabled(button_pressed)
-
-func _process(delta):
-	for i in JoyCon.device_count:
-		if JoyCon.any_button_pressed(i):
-			$ControllerCheckboxes.get_child(i + 1).pressed = true
-	
-	timeout -= delta
-	if timeout < 0:
-		var stick = JoyCon.get_joystick()
-		if abs(stick.x) > 0.7:
-			timeout = MaxTimeout
-			if stick.x > 0:
-# warning-ignore:incompatible_ternary
-				selection = 0 if selection == null else min(MaxSelection, selection + 1)
-			else:
-# warning-ignore:incompatible_ternary
-				selection = 0 if selection == null else max(0, selection - 1)
-			update()
-
-func controller_button_pressed(button):
-	if button.index != JoyCon.get_controller_index():
-		JoyCon.set_controller(button.index)
-		_play_click()
-
-func setup_controller(index):
-	var checkbox = preload("res://ui/EnumeratedCheckBox.tscn").instance()
-	var x = 512 + (index - floor(JoyCon.device_count / 2)) * 150
-	checkbox.rect_position = Vector2(x, 0)
-	checkbox.group = group
-	checkbox.set_index(index)
-	checkbox.pressed = true if index == 0 else false
-	$ControllerCheckboxes.add_child(checkbox)
-
-func get_controllers():
-	if JoyCon.device_count == 0:
-		$ControllerCheckboxes/NoControllers.visible = true
-	
-	group = ButtonGroup.new()
-	if group.connect("pressed", self, "controller_button_pressed") != OK:
-		print("could not connect controller button pressed signal")
-	for i in JoyCon.device_count:
-		setup_controller(i)
 
 func _play_click():
 	$Click.play()

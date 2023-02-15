@@ -20,3 +20,4 @@ func ready_up():
 func _on_game_stopped():
 	$ColorRect/Waiting.visible = false
 	$ColorRect/NextButtons.visible = true
+

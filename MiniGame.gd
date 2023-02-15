@@ -17,6 +17,13 @@ func game_started():
 
 func on_button_released(_button_name):
 	pass
+	
+func _unhandled_input(event):
+	print("input")
+	if event is InputEventScreenTouch and is_network_master():
+		print('touch')
+		set_ready_to_start(true)
+		$"../..".ready_up()
 
 func on_button_pressed(button_name):
 	if button_name == "right" and is_network_master():
@@ -37,10 +44,3 @@ func _ready():
 		print("an error occured while connecting the signal")
 	if $"../..".connect("start", self, "game_started") != OK:
 		print("an error occured while connecting the signal")
-
-func setup_joycons():
-	if JoyCon.connect("button_pressed", self, "on_button_pressed") != OK:
-		print("could not connect button pressed signal")
-	if JoyCon.connect("button_released", self, "on_button_released") != OK:
-		print("could not connect button pressed signal")
-	JoyCon.show_indicator()
