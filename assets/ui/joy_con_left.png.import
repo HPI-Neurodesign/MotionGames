@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/SwitchButtons.svg-72c70586a213f0b0af3d7283544f7eb9.stex"
+path="res://.import/joy_con_left.png-33f0970c20d6a2b7d99146233e0253ae.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/SwitchButtons.svg"
-dest_files=[ "res://.import/SwitchButtons.svg-72c70586a213f0b0af3d7283544f7eb9.stex" ]
+source_file="res://assets/ui/joy_con_left.png"
+dest_files=[ "res://.import/joy_con_left.png-33f0970c20d6a2b7d99146233e0253ae.stex" ]
 
 [params]
 

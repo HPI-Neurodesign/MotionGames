@@ -131,6 +131,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Label" type="Label" parent="."]
+margin_left = 6.0
+margin_top = 5.0
+margin_right = 420.0
+margin_bottom = 42.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Joy Con graphics by Harry Reuter from Noun Project
+Other graphics by Kenney.nl "
+
 [connection signal="button_down" from="Motion" to="." method="_play_click"]
 [connection signal="toggled" from="Motion" to="." method="_on_Motion_toggled"]
 [connection signal="button_down" from="Asymmetric" to="." method="_play_click"]

@@ -127,6 +127,11 @@ func get_joystick():
 	var stick = data.get_joysticks(controller)[joycon_type % 2]
 	return stick * inverted
 
+func get_side():
+	if not joycon_type:
+		return "not setup"
+	return "right" if joycon_type == 1 else "left"
+
 func _process(delta):
 	if data == null:
 		return

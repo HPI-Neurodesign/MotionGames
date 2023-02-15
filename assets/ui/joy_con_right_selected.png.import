@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/RightArrow.png-a32550768e227e9d644da82207d67585.stex"
+path="res://.import/joy_con_right_selected.png-2df315dcd76cf54b6aa901ada8b2743d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/RightArrow.png"
-dest_files=[ "res://.import/RightArrow.png-a32550768e227e9d644da82207d67585.stex" ]
+source_file="res://assets/ui/joy_con_right_selected.png"
+dest_files=[ "res://.import/joy_con_right_selected.png-2df315dcd76cf54b6aa901ada8b2743d.stex" ]
 
 [params]
 
