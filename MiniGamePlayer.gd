@@ -44,8 +44,9 @@ remotesync func start_game():
 func stop_game():
 	emit_signal("stop")
 	running = false
-	$Explanation.visible = true
-	$Explanation.explanation = "Finished!\nYour score is " + str($UI.score)
+	#TODO Score setting
+	#$Explanation.visible = true
+	#$Explanation.explanation = "Finished!\nYour score is " + str($UI.score)
 
 func _on_timeout():
 	stop_game()

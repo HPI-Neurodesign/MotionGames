@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://assets/Font.tres" type="Theme" id=1]
 [ext_resource path="res://assets/ui/move_horizontal.png" type="Texture" id=2]
@@ -16,6 +16,12 @@
 [ext_resource path="res://ui/ResetPopUp.gd" type="Script" id=14]
 [ext_resource path="res://assets/ui/joy_con_right_selected.png" type="Texture" id=15]
 [ext_resource path="res://assets/ui/joy_con_right.png" type="Texture" id=16]
+[ext_resource path="res://ui/SetUpExplanation.gd" type="Script" id=17]
+[ext_resource path="res://assets/ui/joy_con_left_move.png" type="Texture" id=18]
+[ext_resource path="res://assets/ui/joy_con_right_move.png" type="Texture" id=19]
+[ext_resource path="res://assets/ui/move_vertical.png" type="Texture" id=20]
+[ext_resource path="res://assets/ui/joy_con_left_top.png" type="Texture" id=21]
+[ext_resource path="res://assets/ui/joy_con_right_top.png" type="Texture" id=22]
 
 [sub_resource type="Shader" id=5]
 code = "shader_type canvas_item;
@@ -86,8 +92,10 @@ __meta__ = {
 }
 
 [node name="BalanceGame" type="Control" parent="Background"]
+visible = false
 margin_right = 40.0
 margin_bottom = 40.0
+script = ExtResource( 17 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -105,56 +113,75 @@ __meta__ = {
 }
 
 [node name="AsyncExplanation" type="Label" parent="Background/BalanceGame"]
+visible = false
 margin_left = 19.0
 margin_top = 87.0
 margin_right = 1018.0
 margin_bottom = 128.0
 theme = ExtResource( 1 )
-custom_colors/font_color = Color( 0.501961, 0, 0, 1 )
+custom_colors/font_color = Color( 0.12549, 0.72549, 0.121569, 1 )
 text = "Be careful and communicate: Not everyone can see all obstacles!"
 autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Hold" type="Label" parent="Background/BalanceGame"]
-margin_left = 130.0
-margin_top = 141.0
-margin_right = 455.0
-margin_bottom = 172.0
+[node name="Hold" type="Control" parent="Background/BalanceGame"]
+margin_left = 19.0
+margin_top = 87.0
+margin_right = 59.0
+margin_bottom = 127.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Hold" type="Label" parent="Background/BalanceGame/Hold"]
+margin_left = 111.0
+margin_top = 54.0
+margin_right = 436.0
+margin_bottom = 85.0
 theme = ExtResource( 1 )
 text = "Hold the controller like this"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HoldLeft" type="Sprite" parent="Background/BalanceGame"]
-position = Vector2( 65, 160 )
+[node name="HoldLeft" type="Sprite" parent="Background/BalanceGame/Hold"]
+position = Vector2( 46, 73 )
 scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 3 )
 
-[node name="HoldRight" type="Sprite" parent="Background/BalanceGame"]
+[node name="HoldRight" type="Sprite" parent="Background/BalanceGame/Hold"]
 visible = false
-position = Vector2( 65, 160 )
+position = Vector2( 46, 73 )
 scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 16 )
 
-[node name="TiltLeft" type="Sprite" parent="Background/BalanceGame"]
-position = Vector2( 65, 250 )
+[node name="MotionMode" type="Control" parent="Background/BalanceGame"]
+margin_left = 19.0
+margin_top = 87.0
+margin_right = 59.0
+margin_bottom = 127.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MoveLeft" type="Sprite" parent="Background/BalanceGame/MotionMode"]
+position = Vector2( 46, 163 )
 scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 3 )
 
-[node name="TiltRight" type="Sprite" parent="Background/BalanceGame"]
+[node name="MoveRight" type="Sprite" parent="Background/BalanceGame/MotionMode"]
 visible = false
-position = Vector2( 65, 250 )
+position = Vector2( 46, 163 )
 scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 16 )
 
-[node name="Tilt" type="Label" parent="Background/BalanceGame"]
-margin_left = 130.0
-margin_top = 231.0
-margin_right = 757.0
-margin_bottom = 262.0
+[node name="Move" type="Label" parent="Background/BalanceGame/MotionMode"]
+margin_left = 111.0
+margin_top = 144.0
+margin_right = 738.0
+margin_bottom = 175.0
 rect_pivot_offset = Vector2( 134, 154 )
 theme = ExtResource( 1 )
 text = "Tilt the controller to move your character"
@@ -162,28 +189,235 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MoveHorizontal" type="Sprite" parent="Background/BalanceGame"]
-modulate = Color( 0.498039, 0, 0, 1 )
-position = Vector2( 65, 212 )
+[node name="MoveHorizontal" type="Sprite" parent="Background/BalanceGame/MotionMode"]
+modulate = Color( 0.12549, 0.764706, 0.121569, 1 )
+position = Vector2( 46, 125 )
 scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 2 )
 
-[node name="StartLeft" type="Sprite" parent="Background/BalanceGame"]
+[node name="ButtonMode" type="Control" parent="Background/BalanceGame"]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="MoveLeft" type="Sprite" parent="Background/BalanceGame/ButtonMode"]
+position = Vector2( 65, 235 )
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 18 )
+
+[node name="MoveRight" type="Sprite" parent="Background/BalanceGame/ButtonMode"]
+visible = false
+position = Vector2( 65, 235 )
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 19 )
+
+[node name="Move" type="Label" parent="Background/BalanceGame/ButtonMode"]
+margin_left = 130.0
+margin_top = 217.0
+margin_right = 757.0
+margin_bottom = 248.0
+rect_pivot_offset = Vector2( 134, 154 )
+theme = ExtResource( 1 )
+text = "Use the left and right button to move your character"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Start" type="Control" parent="Background/BalanceGame"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StartLeft" type="Sprite" parent="Background/BalanceGame/Start"]
 position = Vector2( 65, 308 )
 scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 4 )
 
-[node name="StartRight" type="Sprite" parent="Background/BalanceGame"]
+[node name="StartRight" type="Sprite" parent="Background/BalanceGame/Start"]
 visible = false
 position = Vector2( 65, 308 )
 scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 15 )
 
-[node name="Start" type="Label" parent="Background/BalanceGame"]
+[node name="Start" type="Label" parent="Background/BalanceGame/Start"]
 margin_left = 130.0
 margin_top = 292.0
 margin_right = 757.0
 margin_bottom = 323.0
+rect_pivot_offset = Vector2( 134, 154 )
+theme = ExtResource( 1 )
+text = "Press any button to start"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FishingGame" type="Control" parent="Background"]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 17 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Explanation" type="Label" parent="Background/FishingGame"]
+margin_left = 14.0
+margin_top = 12.0
+margin_right = 1013.0
+margin_bottom = 103.0
+theme = ExtResource( 1 )
+text = "You and your team are fishing. Raise all corners of the net at the same time to collect all fish inside the net. Pink fish are worth 1 point, purple fish are worth 5. "
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AsyncExplanation" type="Label" parent="Background/FishingGame"]
+visible = false
+margin_left = 19.0
+margin_top = 87.0
+margin_right = 1018.0
+margin_bottom = 128.0
+theme = ExtResource( 1 )
+custom_colors/font_color = Color( 0.12549, 0.72549, 0.121569, 1 )
+text = "Be careful and communicate: Each purple fish can only be seen by one player!"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Hold" type="Control" parent="Background/FishingGame"]
+margin_left = 19.0
+margin_top = 87.0
+margin_right = 59.0
+margin_bottom = 127.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Hold" type="Label" parent="Background/FishingGame/Hold"]
+margin_left = 68.0
+margin_top = 70.0
+margin_right = 393.0
+margin_bottom = 101.0
+theme = ExtResource( 1 )
+text = "Hold the controller like this"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HoldLeft" type="Sprite" parent="Background/FishingGame/Hold"]
+position = Vector2( 30, 90 )
+rotation = 1.5708
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 3 )
+
+[node name="HoldRight" type="Sprite" parent="Background/FishingGame/Hold"]
+visible = false
+position = Vector2( 30, 90 )
+rotation = -1.5708
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 16 )
+
+[node name="MotionMode" type="Control" parent="Background/FishingGame"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MoveLeft" type="Sprite" parent="Background/FishingGame/MotionMode"]
+position = Vector2( 49, 287 )
+rotation = 1.5708
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 3 )
+
+[node name="MoveRight" type="Sprite" parent="Background/FishingGame/MotionMode"]
+visible = false
+position = Vector2( 49, 287 )
+rotation = -1.5708
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 16 )
+
+[node name="Move" type="Label" parent="Background/FishingGame/MotionMode"]
+margin_left = 111.0
+margin_top = 272.0
+margin_right = 738.0
+margin_bottom = 303.0
+rect_pivot_offset = Vector2( 134, 154 )
+theme = ExtResource( 1 )
+text = "Yank up the controller to raise the net"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MoveVertical" type="Sprite" parent="Background/FishingGame/MotionMode"]
+modulate = Color( 0.12549, 0.764706, 0.121569, 1 )
+position = Vector2( 88, 289 )
+rotation = 1.5708
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 20 )
+
+[node name="ButtonMode" type="Control" parent="Background/FishingGame"]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MoveLeft" type="Sprite" parent="Background/FishingGame/ButtonMode"]
+position = Vector2( 49, 287 )
+rotation = 1.5708
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 21 )
+
+[node name="MoveRight" type="Sprite" parent="Background/FishingGame/ButtonMode"]
+visible = false
+position = Vector2( 49, 287 )
+rotation = -1.5708
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 22 )
+
+[node name="Move" type="Label" parent="Background/FishingGame/ButtonMode"]
+margin_left = 111.0
+margin_top = 272.0
+margin_right = 744.0
+margin_bottom = 303.0
+rect_pivot_offset = Vector2( 134, 154 )
+theme = ExtResource( 1 )
+text = "Press the top button to raise the net"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Start" type="Control" parent="Background/FishingGame"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StartLeft" type="Sprite" parent="Background/FishingGame/Start"]
+position = Vector2( 720, 170 )
+rotation = 1.5708
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 4 )
+
+[node name="StartRight" type="Sprite" parent="Background/FishingGame/Start"]
+visible = false
+position = Vector2( 720, 170 )
+rotation = -1.5708
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 15 )
+
+[node name="Start" type="Label" parent="Background/FishingGame/Start"]
+margin_left = 572.0
+margin_top = 219.0
+margin_right = 881.0
+margin_bottom = 250.0
 rect_pivot_offset = Vector2( 134, 154 )
 theme = ExtResource( 1 )
 text = "Press any button to start"

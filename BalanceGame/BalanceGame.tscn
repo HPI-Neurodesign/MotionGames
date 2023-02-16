@@ -133,9 +133,7 @@ texture = ExtResource( 15 )
 [node name="UI" parent="HangerGame" instance=ExtResource( 6 )]
 
 [node name="Explanation" parent="HangerGame" instance=ExtResource( 7 )]
-title = "Scale Management"
-explanation = "Tilt the controller left and right to move along the scale. Organize
-your team to avoid hitting the obstacles spawning under the scale."
+gametype = "balance"
 
 [connection signal="start" from="HangerGame" to="HangerGame/Scales" method="_on_game_started"]
 [connection signal="start" from="HangerGame" to="HangerGame/Blocks" method="_on_game_started"]
@@ -144,5 +142,5 @@ your team to avoid hitting the obstacles spawning under the scale."
 [connection signal="stop" from="HangerGame" to="HangerGame/Blocks" method="_on_game_stopped"]
 [connection signal="stop" from="HangerGame" to="HangerGame/UI" method="_on_game_stopped"]
 [connection signal="stop" from="HangerGame" to="HangerGame/Explanation" method="_on_game_stopped"]
-[connection signal="timeout" from="HangerGame/UI" to="HangerGame" method="stop_game"]
 [connection signal="timeout" from="HangerGame/UI" to="HangerGame" method="_on_timeout"]
+[connection signal="timeout" from="HangerGame/UI" to="HangerGame" method="stop_game"]

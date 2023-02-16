@@ -35,7 +35,7 @@ func game_stopped():
 	on_floor = false
 	position = Vector2(SpawnPositions[player_count], 200)
 	rotation = 0
-	$Sprite.play("idle")
+	$Sprite.play("idle_")
 
 func _network_ready(is_source):
 	player_count = -1

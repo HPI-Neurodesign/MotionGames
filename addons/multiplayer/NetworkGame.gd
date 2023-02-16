@@ -1,4 +1,4 @@
- extends Node
+extends Node
 class_name NetworkGame
 
 export var port = 8877

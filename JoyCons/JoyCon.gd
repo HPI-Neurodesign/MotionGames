@@ -35,7 +35,7 @@ var last_emitted = {
 }
 
 var inverted = 1 #don't invert
-var joycon_type # 1 = right, 2 = left
+var joycon_type # 1 = left, 2 = right
 var controller
 var color
 
@@ -130,7 +130,8 @@ func get_joystick():
 func get_side():
 	if not joycon_type:
 		return "not setup"
-	return "right" if joycon_type == 1 else "left"
+	print(joycon_type)
+	return "left" if joycon_type == 1 else "right"
 
 func _process(delta):
 	if data == null:

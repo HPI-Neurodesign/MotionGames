@@ -1,16 +1,9 @@
 extends Control
 
+export(String) var gametype = "" setget set_game
+
 func _ready():
 	$AnimationPlayer.play("Loading")
-	#todo: only do this in the actual balance game
-	if JoyCon.get_side() == "right":
-		$Background/BalanceGame/HoldLeft.visible = false
-		$Background/BalanceGame/StartLeft.visible = false
-		$Background/BalanceGame/TiltLeft.visible = false
-		
-		$Background/BalanceGame/HoldRight.visible = true
-		$Background/BalanceGame/StartRight.visible = true
-		$Background/BalanceGame/TiltRight.visible = true
 
 func ready_up():
 	$AnimationPlayer/Loading.visible = false
@@ -18,3 +11,9 @@ func ready_up():
 
 func _on_game_stopped():
 	$Background/Waiting.visible = false
+
+func set_game(type):
+	if type == "balance":
+		$Background/BalanceGame.visible = true
+	elif type == "fishing":
+		$Background/FishingGame.visible = true

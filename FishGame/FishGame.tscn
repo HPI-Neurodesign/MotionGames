@@ -52,10 +52,7 @@ position = Vector2( 0, 84 )
 [node name="UI" parent="FishGame" instance=ExtResource( 1 )]
 
 [node name="Explanation" parent="FishGame" instance=ExtResource( 6 )]
-title = "Fishing"
-explanation = "Raise your controller at the same time as the other participants to
-catch the fish in your net. Collect as many fish as you can in the given
-time."
+gametype = "fishing"
 
 [connection signal="start" from="FishGame" to="FishGame/Fishes" method="_on_game_started"]
 [connection signal="start" from="FishGame" to="FishGame/Net" method="_on_game_started"]

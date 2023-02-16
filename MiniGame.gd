@@ -19,17 +19,18 @@ func on_button_released(_button_name):
 	pass
 
 func on_button_pressed(button_name):
-	if button_name == "right" and is_network_master():
+	if is_network_master():
 		set_ready_to_start(true)
 		$"../..".ready_up()
-	if button_name == "top" and is_network_master():
-		if top_pressed:
-			$"../..".rpc("reset")
-			top_pressed = false
-		else:
-			top_pressed = true
-			yield(get_tree().create_timer(0.5), "timeout")
-			top_pressed = false
+	#TODO only when in game
+	#if button_name == "top" and is_network_master():
+	#	if top_pressed:
+	#		$"../..".rpc("reset")
+	#		top_pressed = false
+	#	else:
+	#		top_pressed = true
+	#		yield(get_tree().create_timer(0.5), "timeout")
+	#		top_pressed = false
 
 func _ready():
 	$Sync.add_property("synced", "ready_to_start")
