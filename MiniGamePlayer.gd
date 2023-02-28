@@ -45,7 +45,6 @@ func stop_game():
 	emit_signal("stop")
 	running = false
 	#TODO Score setting
-	#$Explanation.visible = true
 	#$Explanation.explanation = "Finished!\nYour score is " + str($UI.score)
 
 func _on_timeout():
