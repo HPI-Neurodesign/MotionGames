@@ -3,6 +3,7 @@ exports/*
 !exports/MotionGames.sh
 
 other_export/
+temp_exports/
 
 .import/
 
