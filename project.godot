@@ -71,6 +71,10 @@ start={
 2d_render/layer_1="Fishes"
 2d_render/layer_2="Net"
 
+[locale]
+
+translations=PoolStringArray( "res://assets/translations/translations.de.translation", "res://assets/translations/translations.en.translation" )
+
 [physics]
 
 common/enable_pause_aware_picking=true

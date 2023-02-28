@@ -106,7 +106,7 @@ margin_top = 12.0
 margin_right = 1013.0
 margin_bottom = 103.0
 theme = ExtResource( 1 )
-text = "You are balancing on a see-saw with your team. Move in sync with your team to avoid hitting the obstacles that will appear beneath it."
+text = "KEY_B_EXPLANATION"
 autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -120,7 +120,7 @@ margin_right = 1018.0
 margin_bottom = 128.0
 theme = ExtResource( 1 )
 custom_colors/font_color = Color( 0.12549, 0.72549, 0.121569, 1 )
-text = "Be careful and communicate: Not everyone can see all obstacles!"
+text = "KEY_B_A_EXPLANATION"
 autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -141,7 +141,7 @@ margin_top = 54.0
 margin_right = 436.0
 margin_bottom = 85.0
 theme = ExtResource( 1 )
-text = "Hold the controller like this"
+text = "KEY_HOLD_CONTROLLER"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -184,7 +184,7 @@ margin_right = 738.0
 margin_bottom = 175.0
 rect_pivot_offset = Vector2( 134, 154 )
 theme = ExtResource( 1 )
-text = "Tilt the controller to move your character"
+text = "KEY_TILT"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -218,7 +218,7 @@ margin_right = 757.0
 margin_bottom = 248.0
 rect_pivot_offset = Vector2( 134, 154 )
 theme = ExtResource( 1 )
-text = "Use the left and right button to move your character"
+text = "KEY_LEFT_RIGHT_BUTTON"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -248,7 +248,7 @@ margin_right = 757.0
 margin_bottom = 323.0
 rect_pivot_offset = Vector2( 134, 154 )
 theme = ExtResource( 1 )
-text = "Press any button to start"
+text = "KEY_ANY_BUTTON"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -268,7 +268,7 @@ margin_top = 12.0
 margin_right = 1013.0
 margin_bottom = 103.0
 theme = ExtResource( 1 )
-text = "You and your team are fishing. Raise all corners of the net at the same time to collect all fish inside the net. Pink fish are worth 1 point, purple fish are worth 5. "
+text = "KEY_F_EXPLANATION"
 autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -282,7 +282,7 @@ margin_right = 1018.0
 margin_bottom = 128.0
 theme = ExtResource( 1 )
 custom_colors/font_color = Color( 0.12549, 0.72549, 0.121569, 1 )
-text = "Be careful and communicate: Each purple fish can only be seen by one player!"
+text = "KEY_F_A_EXPLANATION"
 autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -303,7 +303,7 @@ margin_top = 70.0
 margin_right = 393.0
 margin_bottom = 101.0
 theme = ExtResource( 1 )
-text = "Hold the controller like this"
+text = "KEY_HOLD_CONTROLLER"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -348,7 +348,7 @@ margin_right = 738.0
 margin_bottom = 303.0
 rect_pivot_offset = Vector2( 134, 154 )
 theme = ExtResource( 1 )
-text = "Yank up the controller to raise the net"
+text = "KEY_YANK"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -388,7 +388,7 @@ margin_right = 744.0
 margin_bottom = 303.0
 rect_pivot_offset = Vector2( 134, 154 )
 theme = ExtResource( 1 )
-text = "Press the top button to raise the net"
+text = "KEY_TOP_BUTTON"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -420,7 +420,7 @@ margin_right = 881.0
 margin_bottom = 250.0
 rect_pivot_offset = Vector2( 134, 154 )
 theme = ExtResource( 1 )
-text = "Press any button to start"
+text = "KEY_ANY_BUTTON"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -439,7 +439,7 @@ __meta__ = {
 [node name="Waiting" type="Label" parent="Background/Waiting"]
 margin_right = 355.0
 margin_bottom = 36.0
-text = "Waiting for other players"
+text = "KEY_WAITING"
 
 [node name="Popup" type="Popup" parent="."]
 margin_left = 781.0
@@ -466,7 +466,7 @@ margin_top = 6.0
 margin_right = 209.0
 margin_bottom = 42.0
 theme = ExtResource( 1 )
-text = "Resetting Game!"
+text = "KEY_RESETTING"
 __meta__ = {
 "_edit_use_anchors_": false
 }

@@ -39,6 +39,8 @@ func joycon_button_pressed(button_name):
 
 func _ready():
 	var args = OS.get_cmdline_args()
+	if "--german" in args:
+		TranslationServer.set_locale("de")
 	if "--dedicated" in args:
 		if "--asymmetric" in args:
 			GameSettings.asymmetric = true

@@ -18,29 +18,29 @@ __meta__ = {
 }
 
 [node name="Motion" type="CheckBox" parent="."]
-margin_left = 391.0
+margin_left = 385.0
 margin_top = 240.0
-margin_right = 653.0
+margin_right = 782.0
 margin_bottom = 298.0
 grow_horizontal = 0
 theme = ExtResource( 2 )
 custom_constants/hseparation = -100
 pressed = true
-text = "Motion"
+text = "KEY_MOTION_CONTROLS"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Asymmetric" type="CheckBox" parent="."]
-margin_left = 391.0
+margin_left = 385.0
 margin_top = 320.0
-margin_right = 653.0
+margin_right = 647.0
 margin_bottom = 378.0
 grow_horizontal = 0
 theme = ExtResource( 2 )
 custom_constants/hseparation = -100
-text = "Asymmetric"
+text = "KEY_ASYMMETRIC"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -52,7 +52,7 @@ margin_top = 410.0
 margin_right = 425.0
 margin_bottom = 490.0
 theme = ExtResource( 2 )
-text = "Fish Game"
+text = "KEY_FISH_GAME"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -63,7 +63,7 @@ margin_top = 410.0
 margin_right = 855.0
 margin_bottom = 490.0
 theme = ExtResource( 2 )
-text = "Balance Game"
+text = "KEY_BALANCE_GAME"
 __meta__ = {
 "_edit_use_anchors_": false
 }

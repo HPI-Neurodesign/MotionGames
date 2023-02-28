@@ -1,0 +1,15 @@
+,en,de
+KEY_FISH_GAME,Fish Game,Angeln
+KEY_BALANCE_GAME,Balance Game,Balancieren
+KEY_MOTION_CONTROLS,Motion Controls,Bewegungssteuerung
+KEY_ASYMMETRIC,Asymmetric,Asymmetrisch
+KEY_B_EXPLANATION,You are balancing on a see-saw with your team. Move in sync with your team to avoid hitting the obstacles that will appear beneath it.,"Du balancierst mit deinem Team auf einer Wippe. Bewegt euch synchron, um den Hindernissen auszuweichen, die unter euch erscheinen werden."
+KEY_B_A_EXPLANATION,Be careful and communicate: Not everyone can see all obstacles!,Seid vorsichtig und kommuniziert: Nicht jeder kann alle Hindernisse sehen!
+KEY_F_EXPLANATION,"You and your team are fishing. Raise all corners of the net at the same time to collect all fish inside the net. Pink fish are worth 1 point, purple fish are worth 5. ","Du und dein Team sind beim Fischen. Hebt alle Ecken des Netzes gleichzeitig an, um alle Fische im Netz einzusammeln. Rosa Fische sind 1 Punkt wert, lila Fische sind 5 Punkte wert."
+KEY_F_A_EXPLANATION,Be careful and communicate: Each purple fish can only be seen by one player!,Seid vorsichtig und kommuniziert: Jeder lila Fisch kann nur von einem Spieler gesehen werden!
+KEY_HOLD_CONTROLLER,Hold the controller like this,Halte den Controller so
+KEY_TILT,Tilt the controller to move your character,"Neige den Controller, um deine Figur zu bewegen"
+KEY_ANY_BUTTON,Press any button to start,Zum Starten eine beliebige Taste drücken
+KEY_LEFT_RIGHT_BUTTON,Use the left and right button to move your character,"Benutze die linke und rechte Taste, um deine Figur zu bewegen"
+KEY_YANK,Yank up the controller to raise the net,"Reiße den Regler hoch, um das Netz anzuheben"
+KEY_TOP_BUTTON,Press the top button to raise the net,"Drücke den oberen Knopf, um das Netz anzuheben"

@@ -4,6 +4,9 @@ var asymmetric = false
 var motion = true
 var port 
 
+func _ready():
+	TranslationServer.set_locale("en")
+
 func set_asymmetric(new):
 	asymmetric = new
 
