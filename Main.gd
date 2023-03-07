@@ -44,14 +44,16 @@ func _ready():
 	if "--dedicated" in args:
 		if "--asymmetric" in args:
 			GameSettings.asymmetric = true
-		for argument in args:
-			if argument.find("game=") > -1:
-				start_game(argument.split("=")[1])
 	else:
 		JoyCon.init()
 		get_controllers()
 		if JoyCon.connect("button_pressed", self, "joycon_button_pressed") != OK:
 			print("could not connect button pressed signal")
+	
+	for argument in args:
+		print(argument)
+		if argument.find("--game=") > -1:
+			start_game(argument.split("=")[1])
 
 func start_game(game):
 	print("Starting game " + str(game))

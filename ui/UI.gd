@@ -20,5 +20,5 @@ func _on_game_stopped():
 	$Timer.stop()
 
 func _on_game_started():
-	$Timer.start(9) #Game Duration
+	$Timer.start(90) #Game Duration
 	set_score(0)

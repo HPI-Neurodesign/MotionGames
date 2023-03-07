@@ -1,6 +1,8 @@
 exports/*
 !exports/MotionGames.bat
 !exports/MotionGames.sh
+!exports/BalanceGame.sh
+!exports/FishGame.sh
 
 other_export/
 temp_exports/
