@@ -12,12 +12,12 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "MiniGame",
 "language": "GDScript",
-"path": "res://MiniGamePlayer.gd"
+"path": "res://MiniGame.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "MiniGamePlayer",
 "language": "GDScript",
-"path": "res://MiniGame.gd"
+"path": "res://MiniGamePlayer.gd"
 }, {
 "base": "Node",
 "class": "NetworkGame",
@@ -56,6 +56,10 @@ window/stretch/aspect="keep"
 [editor_plugins]
 
 enabled=PoolStringArray( "res://addons/multiplayer/plugin.cfg" )
+
+[global]
+
+class=false
 
 [input]
 

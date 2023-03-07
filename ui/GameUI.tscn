@@ -30,12 +30,13 @@ __meta__ = {
 }
 
 [node name="Score" type="Label" parent="."]
-margin_left = 862.0
-margin_top = 12.0
-margin_right = 948.0
-margin_bottom = 48.0
+margin_left = 765.0
+margin_top = 10.0
+margin_right = 952.0
+margin_bottom = 44.0
 theme = ExtResource( 2 )
-text = "Score:"
+text = "KEY_SCORE"
+align = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }

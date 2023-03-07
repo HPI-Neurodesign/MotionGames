@@ -8,4 +8,3 @@ func _process(_delta):
 		$Net.rpc("move_up")
 		for p in get_tree().get_nodes_in_group("players"):
 			p.ready = false
-

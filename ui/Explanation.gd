@@ -17,3 +17,11 @@ func set_game(type):
 		$Background/BalanceGame.visible = true
 	elif type == "fishing":
 		$Background/FishingGame.visible = true
+
+func set_final_score(text):
+	visible = true
+	$Background/BalanceGame.visible = false
+	$Background/FishingGame.visible = false
+	$Background.visible = true
+	$Background/FinalScore.visible = true
+	$Background/FinalScore.text = text

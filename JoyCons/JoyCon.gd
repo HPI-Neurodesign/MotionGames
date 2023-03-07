@@ -130,7 +130,6 @@ func get_joystick():
 func get_side():
 	if not joycon_type:
 		return "not setup"
-	print(joycon_type)
 	return "left" if joycon_type == 1 else "right"
 
 func _process(delta):

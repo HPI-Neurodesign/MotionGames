@@ -1,1 +1,1 @@
-start MotionGames.exe --client
+start MotionGames.exe --client --german

@@ -1,51 +1,47 @@
-extends Node2D
-class_name MiniGame
+extends KinematicBody2D
+class_name MiniGamePlayer
 
-signal start
-signal stop
+var ready_to_start = false setget set_ready_to_start
+var top_pressed = false
 
-var running = false
+func set_ready_to_start(ready):
+	ready_to_start = ready
 
-func _ready():
-	if $"..".connect("player_joined", self, "player_joined") != OK:
-		print("connecting signal failed")
-	if $"..".connect("player_left", self, "player_left") != OK:
-		print("connecting signal failed")
+func game_stopped():
+	ready_to_start = false
+	$YouLabel.visible = false
 
-func _physics_process(_delta):
-	if OS.has_feature("editor") and not running and Input.is_action_just_pressed("start"):
-		rpc("start_game")
-	if is_network_master() and not running and get_tree().get_nodes_in_group("players").size() > 0:
-		for p in get_tree().get_nodes_in_group("players"):
-			if not p.ready_to_start:
-				return
-		rpc("start_game")
+func game_started():
+	if is_network_master():
+		$YouLabel.visible = true
 
-func player_joined(_player, _game):
+func on_button_released(_button_name):
 	pass
 
-func player_left(_player, _game):
-	if get_tree().get_nodes_in_group("players").size() == 0:
-		rpc("reset")
+func on_button_pressed(_button_name):
+	if is_network_master():
+		set_ready_to_start(true)
+		$"../..".ready_up()
+	#TODO only when in game
+	#if button_name == "top" and is_network_master():
+	#	if top_pressed:
+	#		$"../..".rpc("reset")
+	#		top_pressed = false
+	#	else:
+	#		top_pressed = true
+	#		yield(get_tree().create_timer(0.5), "timeout")
+	#		top_pressed = false
 
-remotesync func reset():
-	$Explanation/Popup.popup()
-	stop_game()
+func _ready():
+	$Sync.add_property("synced", "ready_to_start")
+	if $"../..".connect("stop", self, "game_stopped") != OK:
+		print("an error occured while connecting the signal")
+	if $"../..".connect("start", self, "game_started") != OK:
+		print("an error occured while connecting the signal")
 
-func ready_up():
-	$Explanation.ready_up()
-
-remotesync func start_game():
-	$Explanation.visible = false
-	$UI/Timer.start()
-	running = true
-	emit_signal("start")
-
-func stop_game():
-	emit_signal("stop")
-	running = false
-	#TODO Score setting
-	#$Explanation.explanation = "Finished!\nYour score is " + str($UI.score)
-
-func _on_timeout():
-	stop_game()
+func setup_joycons():
+	if JoyCon.connect("button_pressed", self, "on_button_pressed") != OK:
+		print("could not connect button pressed signal")
+	if JoyCon.connect("button_released", self, "on_button_released") != OK:
+		print("could not connect button pressed signal")
+	JoyCon.show_indicator()

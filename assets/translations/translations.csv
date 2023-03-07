@@ -13,3 +13,9 @@ KEY_ANY_BUTTON,Press any button to start,Zum Starten eine beliebige Taste drück
 KEY_LEFT_RIGHT_BUTTON,Use the left and right button to move your character,"Benutze die linke und rechte Taste, um deine Figur zu bewegen"
 KEY_YANK,Yank up the controller to raise the net,"Reiße den Regler hoch, um das Netz anzuheben"
 KEY_TOP_BUTTON,Press the top button to raise the net,"Drücke den oberen Knopf, um das Netz anzuheben"
+KEY_WAITING,Waiting for other players,Warten auf andere Spieler
+KEY_RESET,Resetting Game!,Spiel wird zurückgesetzt!
+KEY_YOU,YOU,DU
+KEY_SCORE,Score:,Punkte:
+KEY_CONGRATS,Congratulations!,Glückwunsch!
+KEY_FINAL_SCORE,Your final score is {score},Eure Punktzahl ist {score}

@@ -1,47 +1,53 @@
-extends KinematicBody2D
-class_name MiniGamePlayer
+extends Node2D
+class_name MiniGame
 
-var ready_to_start = false setget set_ready_to_start
-var top_pressed = false
+signal start
+signal stop
 
-func set_ready_to_start(ready):
-	ready_to_start = ready
-
-func game_stopped():
-	ready_to_start = false
-	$YouLabel.visible = false
-
-func game_started():
-	if is_network_master():
-		$YouLabel.visible = true
-
-func on_button_released(_button_name):
-	pass
-
-func on_button_pressed(button_name):
-	if is_network_master():
-		set_ready_to_start(true)
-		$"../..".ready_up()
-	#TODO only when in game
-	#if button_name == "top" and is_network_master():
-	#	if top_pressed:
-	#		$"../..".rpc("reset")
-	#		top_pressed = false
-	#	else:
-	#		top_pressed = true
-	#		yield(get_tree().create_timer(0.5), "timeout")
-	#		top_pressed = false
+var running = false
 
 func _ready():
-	$Sync.add_property("synced", "ready_to_start")
-	if $"../..".connect("stop", self, "game_stopped") != OK:
-		print("an error occured while connecting the signal")
-	if $"../..".connect("start", self, "game_started") != OK:
-		print("an error occured while connecting the signal")
+	if $"..".connect("player_joined", self, "player_joined") != OK:
+		print("connecting signal failed")
+	if $"..".connect("player_left", self, "player_left") != OK:
+		print("connecting signal failed")
 
-func setup_joycons():
-	if JoyCon.connect("button_pressed", self, "on_button_pressed") != OK:
-		print("could not connect button pressed signal")
-	if JoyCon.connect("button_released", self, "on_button_released") != OK:
-		print("could not connect button pressed signal")
-	JoyCon.show_indicator()
+func _physics_process(_delta):
+	if OS.has_feature("editor") and not running and Input.is_action_just_pressed("start"):
+		rpc("start_game")
+	if is_network_master() and not running and get_tree().get_nodes_in_group("players").size() > 0:
+		for p in get_tree().get_nodes_in_group("players"):
+			if not p.ready_to_start:
+				return
+		rpc("start_game")
+
+func player_joined(_player, _game):
+	pass
+
+func player_left(_player, _game):
+	if get_tree().get_nodes_in_group("players").size() == 0:
+		rpc("reset")
+
+remotesync func reset():
+	$Explanation/Popup.popup()
+	stop_game()
+
+func ready_up():
+	$Explanation.ready_up()
+
+remotesync func start_game():
+	$Explanation.visible = false
+	$UI/Timer.start()
+	running = true
+	emit_signal("start")
+
+func stop_game():
+	emit_signal("stop")
+	running = false
+	var text = tr("KEY_CONGRATS")
+	text += "\n"
+	text += tr("KEY_FINAL_SCORE").format({score=$UI.score})
+	$Explanation.set_final_score(text)
+
+func _on_timeout():
+	stop_game()
