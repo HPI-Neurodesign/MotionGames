@@ -141,6 +141,9 @@ margin_bottom = 42.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Joy Con graphics by Harry Reuter from Noun Project
 Other graphics by Kenney.nl "
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [connection signal="button_down" from="Motion" to="." method="_play_click"]
 [connection signal="toggled" from="Motion" to="." method="_on_Motion_toggled"]

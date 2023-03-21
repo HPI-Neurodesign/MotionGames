@@ -142,5 +142,5 @@ gametype = "balance"
 [connection signal="stop" from="HangerGame" to="HangerGame/Blocks" method="_on_game_stopped"]
 [connection signal="stop" from="HangerGame" to="HangerGame/UI" method="_on_game_stopped"]
 [connection signal="stop" from="HangerGame" to="HangerGame/Explanation" method="_on_game_stopped"]
-[connection signal="timeout" from="HangerGame/UI" to="HangerGame" method="_on_timeout"]
 [connection signal="timeout" from="HangerGame/UI" to="HangerGame" method="stop_game"]
+[connection signal="timeout" from="HangerGame/UI" to="HangerGame" method="_on_timeout"]

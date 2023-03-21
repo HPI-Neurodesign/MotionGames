@@ -69,13 +69,8 @@ func spawn_block(side, player = null):
 	add_child(block)
 
 func on_failure():
-	rpc("_on_failure")
-func on_success():
-	rpc("_on_success")
-
-remotesync func _on_failure():
 	$ErrorAudio.play()
 	$"../ShakeCamera2D".add_trauma(0.5)
 
-remotesync func _on_success():
+func on_success():
 	$SuccessAudio.play()

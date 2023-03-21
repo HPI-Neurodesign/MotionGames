@@ -38,12 +38,17 @@ func joycon_button_pressed(button_name):
 		$BlanceGame.emit_signal("pressed")
 
 func _ready():
+	print("ready")
 	var args = OS.get_cmdline_args()
 	if "--german" in args:
 		TranslationServer.set_locale("de")
 	if "--dedicated" in args:
 		if "--asymmetric" in args:
 			GameSettings.asymmetric = true
+	if "--motion" in args:
+		GameSettings.motion = true
+	if "--buttons" in args:
+		GameSettings.motion = false
 	else:
 		JoyCon.init()
 		get_controllers()
