@@ -5,6 +5,11 @@ signal stop
 
 var running = false
 
+func _ready():
+	JoyCon.init()
+	JoyCon.get_controller_index()
+	JoyCon.set_controller(0)
+	
 func _physics_process(_delta):
 	pass
 	#if not running and $"/root/JoyCon".any_button_pressed();

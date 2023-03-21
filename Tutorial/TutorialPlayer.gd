@@ -1,4 +1,4 @@
-extends MiniGamePlayer
+extends KinematicBody2D
 
 enum State {WalkingRight, WalkingLeft, Idle}
 
@@ -51,13 +51,18 @@ func _network_ready(is_source):
 			set_block_colors([matched_colors.keys()[player_count], matched_colors.values()[player_count]])
 
 func _ready():
-	if is_network_master():
-		setup_joycons()
-		offset = $YouLabel.rect_position
-		$YouLabel.visible = true
-		$YouLabel.set_as_toplevel(true)
-		$YouLabel.rect_position = Vector2(-100, -100)
+	setup_joycons()
+	offset = $YouLabel.rect_position
+	$YouLabel.visible = true
+	$YouLabel.set_as_toplevel(true)
+	$YouLabel.rect_position = Vector2(-100, -100)
 
+func setup_joycons():
+	if JoyCon.connect("button_pressed", self, "on_button_pressed") != OK:
+		print("could not connect button pressed signal")
+	if JoyCon.connect("button_released", self, "on_button_released") != OK:
+		print("could not connect button pressed signal")
+	JoyCon.show_indicator()
 
 func on_button_pressed(button_name):
 	.on_button_pressed(button_name)
@@ -74,7 +79,7 @@ func on_button_released(button_name):
 		direction_pressed = 0
 	
 func _process(_delta):
-	if is_network_master() and $"../..".running:
+	if  $"../..".running:
 		$YouLabel.rect_position = global_position + offset
 		var velocity = Vector2()
 		velocity.y += gravity
@@ -104,9 +109,8 @@ func _process(_delta):
 		$Sprite.play("walk_" + c)
 		$Sprite.flip_h = false
 	
-	if is_network_master():
-		for block in $"../../Blocks".get_children():
-			if block is Area2D and \
-			 (block.tint_color == colors[1] or \
-			  block.tint_color == Color.red):
-				block.visible = true
+	for block in $"../../Blocks".get_children():
+		if block is Area2D and \
+		 (block.tint_color == colors[1] or \
+		  block.tint_color == Color.red):
+			block.visible = true

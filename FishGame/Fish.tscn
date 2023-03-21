@@ -53,6 +53,7 @@ visible = false
 modulate = Color( 0.360784, 0, 1, 1 )
 rotation = -1.5708
 frames = SubResource( 2 )
+frame = 1
 playing = true
 
 [node name="GreenFish" type="AnimatedSprite" parent="."]
@@ -60,13 +61,11 @@ visible = false
 modulate = Color( 0, 0.909804, 0.290196, 1 )
 rotation = -1.5708
 frames = SubResource( 3 )
-frame = 1
 playing = true
 
 [node name="BlueFish" type="AnimatedSprite" parent="."]
 visible = false
 frames = SubResource( 4 )
-frame = 1
 playing = true
 
 [node name="VisibilityNotifier" type="VisibilityNotifier2D" parent="."]
