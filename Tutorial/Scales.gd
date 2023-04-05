@@ -3,15 +3,7 @@ extends KinematicBody2D
 const MaxRotation = 0.3
 const speed = 0.001
 
-func _ready():
-	set_physics_process(false)
-
-func _on_game_stopped():
-	rotation = 0
-	set_physics_process(false)
-
-func _on_game_started():
-	set_physics_process(true)
+signal even
 
 func _physics_process(delta):
 	var players = get_tree().get_nodes_in_group("players")
@@ -25,3 +17,6 @@ func _physics_process(delta):
 	rotation = clamp(rotation, -MaxRotation, MaxRotation)
 	for p in players:
 		p.rotation = rotation
+	
+	if abs(rotation) < 0.02:
+		emit_signal("even")

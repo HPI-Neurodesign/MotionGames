@@ -41,26 +41,21 @@ func set_side(new_side):
 func set_color(color):
 	tint_color = color
 
-func _network_ready(is_source):
-	if is_source:
-		spawn_pos = SpawnPos[side]
-	
+func _ready():
 	original_scale = scale
-	position = spawn_pos
+	position = SpawnPos[side]
 	$Sprite.self_modulate = tint_color
 	$Tween.interpolate_property($Sprite, "self_modulate", $Sprite.self_modulate, $Sprite.self_modulate + Color.white, 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$Tween.interpolate_property($Sprite, "self_modulate", $Sprite.self_modulate + Color.white, $Sprite.self_modulate, 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT, 0.5)
 	$Tween.start()
-	
-	#visible = false
-	
+
 
 func _physics_process(delta):
 	if grow_after > 0:
 		grow_after -= delta
 	else:
 		set_physics_process(false)
-		if in_block and is_network_master():
+		if in_block:
 			hit()
 		$Tween.stop_all()
 		$Tween.interpolate_property($CollisionShape2D, "scale", $CollisionShape2D.scale, max_size, 1, Tween.TRANS_LINEAR)
@@ -70,28 +65,26 @@ func _physics_process(delta):
 		$Sprite.self_modulate = tint_color
 
 func _on_Block_entered(body):
-	if body.is_in_group("scale") and is_network_master():
+	if body.is_in_group("scale"):
 		if grow_after > 0:
 			in_block = true
 			return
 		hit()
 
 func _on_Block_exited(body):
-	if body.is_in_group("scale") and is_network_master():
+	if body.is_in_group("scale"):
 		in_block = false
 
 func _on_tween_completed(object, key):
-	if object == $Sprite and key == ":scale" and is_network_master():
+	if object == $Sprite and key == ":scale":
 		avoided()
 
 func hit():
-	$"../../UI".update_score(-10)
 	$Audio.stop()
 	$"..".on_failure()
 	queue_free()
 
 func avoided():
-	$"../../UI/".update_score(10)
 	$"..".on_success()
 	$Audio.stop()
 	queue_free()

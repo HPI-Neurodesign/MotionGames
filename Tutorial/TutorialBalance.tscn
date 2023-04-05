@@ -1,10 +1,10 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://assets/HangerGame/decoration/medievalTile_210.png" type="Texture" id=1]
 [ext_resource path="res://Tutorial/Tutorial.gd" type="Script" id=2]
 [ext_resource path="res://assets/HangerGame/HangerGameTileMap.tres" type="TileSet" id=3]
 [ext_resource path="res://assets/HangerGame/decoration/medievalTile_234.png" type="Texture" id=4]
-[ext_resource path="res://ui/Explanation.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/Font.tres" type="Theme" id=5]
 [ext_resource path="res://assets/sounds/jingles_PIZZI16.wav" type="AudioStream" id=6]
 [ext_resource path="res://assets/HangerGame/decoration/medievalTile_187.png" type="Texture" id=7]
 [ext_resource path="res://assets/HangerGame/decoration/medievalTile_029.png" type="Texture" id=8]
@@ -19,6 +19,8 @@
 [sub_resource type="Environment" id=1]
 background_mode = 4
 glow_enabled = true
+
+[sub_resource type="RectangleShape2D" id=2]
 
 [node name="TutorialBalance" type="Node2D"]
 script = ExtResource( 2 )
@@ -42,6 +44,7 @@ tile_data = PoolIntArray( 0, 6, 0, 1, 4, 0, 2, 4, 0, 3, 4, 0, 4, 4, 0, 5, 4, 0, 
 position = Vector2( 512, 0 )
 
 [node name="Player" parent="Players" instance=ExtResource( 14 )]
+position = Vector2( 0, 370 )
 
 [node name="Scales" type="KinematicBody2D" parent="." groups=["floor", "scale"]]
 position = Vector2( 512, 386 )
@@ -123,11 +126,57 @@ texture = ExtResource( 8 )
 position = Vector2( 960, 160 )
 texture = ExtResource( 13 )
 
-[node name="Explanation" parent="." instance=ExtResource( 5 )]
-gametype = "balance"
+[node name="Instruction" type="Control" parent="."]
+margin_top = -32.0
+margin_right = 40.0
+margin_bottom = 8.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[connection signal="start" from="." to="Scales" method="_on_game_started"]
-[connection signal="start" from="." to="Blocks" method="_on_game_started"]
-[connection signal="stop" from="." to="Scales" method="_on_game_stopped"]
-[connection signal="stop" from="." to="Blocks" method="_on_game_stopped"]
-[connection signal="stop" from="." to="Explanation" method="_on_game_stopped"]
+[node name="ColorRect" type="ColorRect" parent="Instruction"]
+margin_left = -16.0
+margin_top = 76.0
+margin_right = 1049.0
+margin_bottom = 208.0
+color = Color( 0, 0, 0, 0.364706 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Instruction"]
+margin_left = 18.0
+margin_top = 92.0
+margin_right = 1009.0
+margin_bottom = 194.0
+theme = ExtResource( 5 )
+text = "This is you"
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Left" type="Area2D" parent="."]
+position = Vector2( 178, 363 )
+scale = Vector2( 1, 10 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Left"]
+shape = SubResource( 2 )
+
+[node name="Right" type="Area2D" parent="."]
+position = Vector2( 850, 363 )
+scale = Vector2( 1, 10 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Right"]
+shape = SubResource( 2 )
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="even" from="Scales" to="." method="_on_scales_even"]
+[connection signal="failed" from="Blocks" to="." method="_on_Blocks_failed"]
+[connection signal="succeeded" from="Blocks" to="." method="_on_Blocks_succeeded"]
+[connection signal="body_entered" from="Left" to="." method="_on_left_reached"]
+[connection signal="body_entered" from="Right" to="." method="_on_right_reached"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
