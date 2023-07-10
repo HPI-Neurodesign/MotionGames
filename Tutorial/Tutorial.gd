@@ -11,9 +11,12 @@ var step = 0
 # 4 - SPAWN OBSTACLE LEFT
 # 5 - SPAWN OBSTACLES ON BOTH SIDES?
 
+var successes = 0 #relevant when two obstacles are spawned
+
 func _ready():
 	running = true
-	set_explanation("This is you.\nTo move your character to the right, tilt your controller")
+	var move = "tilt your controller" if GameSettings.motion else "press the right button."
+	set_explanation("This is you.\nTo move your character to the right, " + move)
 
 func set_explanation(text):
 	$Instruction/Label.text = text
@@ -39,7 +42,7 @@ func _on_scales_even():
 		step = 3
 		$Blocks/SuccessAudio.play()
 		set_explanation("Great Job!\nDuring the game, obstacles will spawn underneath the see saw. Try to avoid them by moving the see saw. The outline indicates the size the obstacle will grow to.")
-		$Timer.start(2.0)
+		$Timer.start(4.0)
 
 func _on_Timer_timeout():
 	if (step == 1):
@@ -50,6 +53,7 @@ func _on_Timer_timeout():
 		$Blocks.spawn_block(false)
 	elif (step == 5):
 		$Blocks.spawn_two_blocks()
+		successes = 0
 
 func _on_Blocks_succeeded():
 	if (step == 3):
@@ -61,9 +65,20 @@ func _on_Blocks_succeeded():
 		step = 5
 		$Timer.start(2.0)
 	elif (step == 5):
-		set_explanation("Congrats!\nYou completed the tutorial")
+		successes += 1
+		if successes < 2:
+			return
+		set_explanation("Congrats!\nYou completed the tutorial.\nPress any button to join the game.")
 		$Scales.set_physics_process(false)
 		$Players/Player.set_process(false)
+		$Players/Player.game_stopped()
+		
+		if JoyCon.connect("button_pressed", self, "joycon_button_pressed") != OK:
+			print("could not connect button pressed signal")
+
+func joycon_button_pressed(_button):
+	if get_tree().change_scene("res://BalanceGame/BalanceGame.tscn") != OK:
+		print("failed to start balance game")
 
 func _on_Blocks_failed():
 	$Timer.start(2.0)

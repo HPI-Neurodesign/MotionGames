@@ -21,6 +21,7 @@ background_mode = 4
 glow_enabled = true
 
 [sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 48.25, 13.75 )
 
 [node name="TutorialBalance" type="Node2D"]
 script = ExtResource( 2 )
@@ -162,6 +163,7 @@ position = Vector2( 178, 363 )
 scale = Vector2( 1, 10 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Left"]
+position = Vector2( 1.5, 0.150002 )
 shape = SubResource( 2 )
 
 [node name="Right" type="Area2D" parent="."]
@@ -169,6 +171,7 @@ position = Vector2( 850, 363 )
 scale = Vector2( 1, 10 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Right"]
+position = Vector2( -4.75, 0 )
 shape = SubResource( 2 )
 
 [node name="Timer" type="Timer" parent="."]

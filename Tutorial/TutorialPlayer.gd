@@ -31,9 +31,6 @@ func set_block_colors(array):
 var direction_pressed = 0
 
 func game_stopped():
-	on_floor = false
-	position = Vector2(SpawnPositions[player_count], 200)
-	rotation = 0
 	$Sprite.play("idle_")
 
 func _ready():

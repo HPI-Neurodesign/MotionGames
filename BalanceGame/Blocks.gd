@@ -51,12 +51,14 @@ func _process(delta):
 func spawn_two_blocks():
 	var right_block = preload("res://BalanceGame/Block.tscn").instance()
 	right_block.tint_color = Color.red
+	right_block.visible = true
 	right_block.side = 0
 	right_block.size = 3 + floor(blocks_spawned / 7)
 	add_child(right_block)
 	
 	var left_block = preload("res://BalanceGame/Block.tscn").instance()
 	left_block.tint_color = Color.red
+	left_block.visible = true
 	left_block.side = 1
 	left_block.size = 3 + floor(blocks_spawned / 7) 
 	add_child(left_block)

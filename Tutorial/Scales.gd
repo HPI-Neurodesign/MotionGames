@@ -5,6 +5,9 @@ const speed = 0.001
 
 signal even
 
+var time_even = 0
+var time_even_count = 1.5
+
 func _physics_process(delta):
 	var players = get_tree().get_nodes_in_group("players")
 	var total_tilt = 0
@@ -18,5 +21,10 @@ func _physics_process(delta):
 	for p in players:
 		p.rotation = rotation
 	
-	if abs(rotation) < 0.02:
-		emit_signal("even")
+	if abs(rotation) < 0.1:
+		time_even += delta
+		if (time_even >= time_even_count):
+			emit_signal("even")
+			time_even = 0
+	else:
+		time_even = 0

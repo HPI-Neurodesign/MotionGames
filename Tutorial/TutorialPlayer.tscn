@@ -4,10 +4,35 @@
 [ext_resource path="res://Tutorial/TutorialPlayer.gd" type="Script" id=2]
 [ext_resource path="res://assets/Font.tres" type="Theme" id=4]
 
-[sub_resource type="AtlasTexture" id=12]
+[sub_resource type="AtlasTexture" id=18]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 640, 0, 128, 256 )
+region = Rect2( 512, 256, 128, 256 )
+
+[sub_resource type="AtlasTexture" id=19]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 512, 512, 128, 256 )
+
+[sub_resource type="AtlasTexture" id=9]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 256, 512, 128, 256 )
+
+[sub_resource type="AtlasTexture" id=20]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 1792, 128, 256 )
+
+[sub_resource type="AtlasTexture" id=16]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 640, 1024, 128, 256 )
+
+[sub_resource type="AtlasTexture" id=17]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 640, 1280, 128, 256 )
 
 [sub_resource type="AtlasTexture" id=13]
 flags = 4
@@ -24,35 +49,10 @@ flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 256, 1792, 128, 256 )
 
-[sub_resource type="AtlasTexture" id=9]
+[sub_resource type="AtlasTexture" id=11]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 256, 512, 128, 256 )
-
-[sub_resource type="AtlasTexture" id=1]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 128, 768, 128, 256 )
-
-[sub_resource type="AtlasTexture" id=3]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 128, 1024, 128, 256 )
-
-[sub_resource type="AtlasTexture" id=20]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 0, 1792, 128, 256 )
-
-[sub_resource type="AtlasTexture" id=18]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 512, 256, 128, 256 )
-
-[sub_resource type="AtlasTexture" id=19]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 512, 512, 128, 256 )
+region = Rect2( 768, 768, 128, 256 )
 
 [sub_resource type="AtlasTexture" id=21]
 flags = 4
@@ -64,26 +64,41 @@ flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 0, 256, 128, 256 )
 
-[sub_resource type="AtlasTexture" id=16]
+[sub_resource type="AtlasTexture" id=1]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 640, 1024, 128, 256 )
+region = Rect2( 128, 768, 128, 256 )
 
-[sub_resource type="AtlasTexture" id=17]
+[sub_resource type="AtlasTexture" id=3]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 640, 1280, 128, 256 )
+region = Rect2( 128, 1024, 128, 256 )
 
-[sub_resource type="AtlasTexture" id=11]
+[sub_resource type="AtlasTexture" id=12]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 768, 768, 128, 256 )
+region = Rect2( 640, 0, 128, 256 )
 
 [sub_resource type="SpriteFrames" id=8]
 animations = [ {
-"frames": [ SubResource( 12 ) ],
+"frames": [ SubResource( 18 ), SubResource( 19 ) ],
 "loop": true,
-"name": "idle_green",
+"name": "walk_green",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 9 ) ],
+"loop": true,
+"name": "idle_yellow",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 20 ) ],
+"loop": true,
+"name": "idle_",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 16 ), SubResource( 17 ) ],
+"loop": true,
+"name": "walk_blue",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 13 ) ],
@@ -96,24 +111,9 @@ animations = [ {
 "name": "walk_pink",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 9 ) ],
+"frames": [ SubResource( 11 ) ],
 "loop": true,
-"name": "idle_yellow",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 1 ), SubResource( 3 ) ],
-"loop": true,
-"name": "walk_yellow",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 20 ) ],
-"loop": true,
-"name": "idle_",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 18 ), SubResource( 19 ) ],
-"loop": true,
-"name": "walk_green",
+"name": "idle_blue",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 21 ), SubResource( 22 ) ],
@@ -121,14 +121,14 @@ animations = [ {
 "name": "walk_",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 16 ), SubResource( 17 ) ],
+"frames": [ SubResource( 1 ), SubResource( 3 ) ],
 "loop": true,
-"name": "walk_blue",
+"name": "walk_yellow",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 11 ) ],
+"frames": [ SubResource( 12 ) ],
 "loop": true,
-"name": "idle_blue",
+"name": "idle_green",
 "speed": 5.0
 } ]
 
@@ -172,7 +172,6 @@ __meta__ = {
 position = Vector2( 0, -128 )
 frames = SubResource( 8 )
 animation = "walk_"
-frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -15,6 +15,7 @@ func _ready():
 		GameSettings.motion = true
 	if "--buttons" in args:
 		GameSettings.motion = false
+	set_mode()
 	if not "--dedicated" in args:
 		JoyCon.init()
 		JoyCon.set_controller(0)
@@ -25,9 +26,13 @@ func _ready():
 	for argument in args:
 		print(argument)
 		if argument.find("--game=") > -1:
-			#start_game(argument.split("=")[1])
 			game = argument.split("=")[1]
 		#TODO should probably allow skipping the tutorial
+
+func set_mode():
+	if GameSettings.motion == false:
+		$Explanation/BalanceGame/ButtonMode.visible = true
+		$Explanation/BalanceGame/MotionMode.visible = false
 
 func start_game():
 	print("Starting game " + str(game))

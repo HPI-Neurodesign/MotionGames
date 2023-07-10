@@ -85,7 +85,6 @@ func show_indicator():
 	indicator.color = get_joycon_color()
 	get_tree().get_root().call_deferred("add_child", indicator)
 	indicator.rect_global_position = Vector2.ZERO
-	print("added indicator")
 
 func set_controller(number):
 	_set_up(number)
